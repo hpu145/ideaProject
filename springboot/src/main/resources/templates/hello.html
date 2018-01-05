@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <h3 th:text="${message}"></h3>
+    <h3 th:text="${user.userName}"></h3>
+    <h3 th:text="${session.curr_user}"></h3>
+    <h3 th:text="${param.p}"></h3>
+    <h3 th:text="${datetime}"></h3>
+    <h3 th:text="${#dates.format(datetime,'yyyy-MM-dd HH:mm:ss')}"></h3>
+    <h1 th:if="${user.userName == 'jack'}">Hello,Jack</h1>
+    <h1 th:if="${user.userName == 'tom'}">Hello,Tom</h1>
+    <ul th:switch="${user.userName}">
+        <li th:case="'jack'">Jack,welcome</li>
+        <li th:case="'tom'">Tom,welcome</li>
+        <li th:case="*">欢迎光临</li>
+    </ul>
+
+    <ul>
+        <li th:each="name : ${namelists}" th:text="${name}"></li>
+    </ul>
+
+    <input type="text" th:value="${user.userName}">
+    <img th:src="@{'/image/zhihu.png'}">
+    <a th:href="@{/user(id=${user.id})}" th:text="${user.userName}"></a>
+
+</body>
+</html>
